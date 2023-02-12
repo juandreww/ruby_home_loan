@@ -4,7 +4,7 @@ class CreateBrand < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :address
       t.integer :owner_id
-      t.name :owner_name
+      t.string :owner_name
 
       t.timestamps
     end
