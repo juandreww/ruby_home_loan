@@ -1,0 +1,34 @@
+<%= form_with model: @brand do |form| %>
+  <br>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <br>
+  <div>
+    <%= form.label :address %><br>
+    <%= form.text_area :address %>
+  </div>
+
+  <br>
+  <%= form.fields_for :visions do |vision_subform| %>
+    <table style="width: 15%">
+      <tr>
+        <td><%= vision_subform.label :vision_1 %><td>
+        <td><%= vision_subform.label :vision_2 %><td>
+        <td><%= vision_subform.label :vision_3 %><td>
+      </tr>
+      <tr>
+        <td><%= vision_subform.select :vision, Brand.visions, include_blank: true %><td>
+        <td><%= vision_subform.select :vision, Brand.visions, include_blank: true %><td>
+        <td><%= vision_subform.select :vision, Brand.visions, include_blank: true %><td>
+      </tr>
+    </table>
+  <% end %>
+
+  <br>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
