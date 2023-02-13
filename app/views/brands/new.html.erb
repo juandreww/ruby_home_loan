@@ -1,5 +1,5 @@
+<h3>Create Brand Page</h3>
 <%= form_with model: @brand do |form| %>
-  <br>
   <div>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
@@ -15,14 +15,14 @@
   <%= form.fields_for :visions do |vision_subform| %>
     <table style="width: 15%">
       <tr>
-        <td><%= vision_subform.label :vision_1 %><td>
+       <h1>Brand info:</h1> <td><%= vision_subform.label :vision_1 %><td>
         <td><%= vision_subform.label :vision_2 %><td>
         <td><%= vision_subform.label :vision_3 %><td>
       </tr>
       <tr>
-        <td><%= vision_subform.select :vision, Brand.visions, include_blank: true %><td>
-        <td><%= vision_subform.select :vision, Brand.visions, include_blank: true %><td>
-        <td><%= vision_subform.select :vision, Brand.visions, include_blank: true %><td>
+        <td><%= vision_subform.select :vision, Brand.visions, selected: @vision[0], include_blank: true %><td>
+        <td><%= vision_subform.select :vision, Brand.visions, selected: @vision[1], include_blank: true %><td>
+        <td><%= vision_subform.select :vision, Brand.visions, selected: @vision[2], include_blank: true %><td>
       </tr>
     </table>
   <% end %>

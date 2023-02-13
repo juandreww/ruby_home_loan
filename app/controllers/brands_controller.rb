@@ -1,8 +1,7 @@
 class BrandsController < ApplicationController
   def new
-    byebug
     @brand = Brand.new
-    new_params['vision']
+    new_instance_variables
   end
 
   def create
@@ -23,7 +22,15 @@ class BrandsController < ApplicationController
     'Brand'
   end
 
+  def default_url_options
+    { locale: I18n.locale }
+  end
+
   private
+
+  def new_instance_variables
+    @vision = new_params['vision'].map { |vision| vision.to_i }
+  end
 
   def new_params
     params.permit(vision: [])
