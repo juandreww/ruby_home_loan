@@ -1,0 +1,22 @@
+<h3>Create User Page</h3>
+<div class = "container">
+  <%= form_with model: @user do |form| %>
+    <div>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </div>
+
+    <br>
+    <div>
+      <%= form.label :address %><br>
+      <%= form.text_area :address %>
+    </div>
+
+    <br>
+
+    <br>
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>

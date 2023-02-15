@@ -4,12 +4,16 @@ class UsersController < ApplicationController
   end
 
   def sign_in
-    byebug
+    @user = User.new
   end
 
   def successful_sign_up
   end
 
   def forgot_password
+  end
+
+  def page_title
+    'User'
   end
 end
