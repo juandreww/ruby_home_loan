@@ -1,5 +1,8 @@
 class BrandsController < ApplicationController
   def new
+    session_brand = Brand.find_by(id: 3)
+    session['brand_id'] = session_brand.id
+
     @brand = Brand.new
     new_instance_variables
   end
@@ -10,6 +13,7 @@ class BrandsController < ApplicationController
     if @brand.save
       redirect_to @brand
     else
+      new_instance_variables
       render :new, status: :unprocessable_entity
     end
   end
@@ -29,7 +33,7 @@ class BrandsController < ApplicationController
   private
 
   def new_instance_variables
-    @vision = new_params['vision'].map { |vision| vision.to_i }
+    @vision = new_params['vision'].present? ? new_params['vision'].map { |vision| vision.to_i } : []
   end
 
   def new_params
