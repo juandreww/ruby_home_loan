@@ -1,22 +1,22 @@
-<h3>Create User Page</h3>
 <div class = "container">
+  <h3>Sign in page</h3>
   <%= form_with model: @user do |form| %>
     <div>
-      <%= form.label :name %><br>
-      <%= form.text_field :name %>
+      <%= form.label :email %><br>
+      <%= form.text_field :email %>
     </div>
 
     <br>
     <div>
-      <%= form.label :address %><br>
-      <%= form.text_area :address %>
+      <%= form.label :password %><br>
+      <%= form.text_field :password %>
     </div>
 
     <br>
 
     <br>
     <div>
-      <%= form.submit %>
+      <%= form.submit 'Sign in' %>
     </div>
   <% end %>
 </div>
