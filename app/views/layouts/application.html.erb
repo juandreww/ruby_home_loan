@@ -12,12 +12,22 @@
     <%= javascript_importmap_tags %>
 
     <style>
-      body {
+      body, html {
         height: 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: left top;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: table;
+      }
+
+      .body-align-middle {
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      form {
+        display: table;
+        margin: auto;
       }
 
       .container {
@@ -25,6 +35,10 @@
         height: 100%;
         margin-top: 20px;
         margin-right: 100px;
+      }
+
+      .button {
+        width: 100%;
       }
     </style>
   </head>

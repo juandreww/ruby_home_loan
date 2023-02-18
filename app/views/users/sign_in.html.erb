@@ -1,6 +1,6 @@
-<div class = "container">
-  <h3>Sign in page</h3>
+<div class = "body-align-middle">
   <%= form_with model: @user do |form| %>
+  <h3><div style="text-align: center">Sign in</div></h3>
     <div>
       <%= form.label :email %><br>
       <%= form.text_field :email %>
@@ -9,14 +9,21 @@
     <br>
     <div>
       <%= form.label :password %><br>
-      <%= form.text_field :password %>
+      <%= form.password_field :password, id:"password" %>
     </div>
 
     <br>
 
     <br>
     <div>
-      <%= form.submit 'Sign in' %>
+      <%= form.submit 'Sign in', class: "button" %>
+    </div>
+
+    <br>
+    <hr class="solid">
+
+    <div>
+      <%= link_to "Sign up", "sign_up", class: "button input" %>
     </div>
   <% end %>
 </div>
