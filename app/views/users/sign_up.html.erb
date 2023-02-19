@@ -20,11 +20,14 @@
     </div>
 
     <% if @user.errors.any? %>
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+      <div style="color: red">
+        <br>
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
     <% end %>
   <% end %>
 </div>
