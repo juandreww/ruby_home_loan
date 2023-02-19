@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def forgot_password; end
 
   def page_title
-    'Users'
+    'User'
   end
 
   private
