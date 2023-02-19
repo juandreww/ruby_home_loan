@@ -21,9 +21,16 @@
 
     <br>
     <hr class="solid">
+  <% end %>
+
+  <%= form_with url: "/users/sign_up", method: :get, model: @user do |form| %>
 
     <div>
-      <%= form.button "Sign up", formmethod: "get", class: "button input" %>
+      <%= form.submit 'Sign up', class: "button input" %>
+    </div>
+    <div class="white">
+      <%= form.label :password %><br>
+      <%= form.password_field :password, id:"password", class: "white", disabled: true %>
     </div>
   <% end %>
 </div>
