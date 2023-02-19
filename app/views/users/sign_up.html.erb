@@ -1,6 +1,6 @@
 <div class = "body-align-middle">
   <%= form_with url: "/users/new_session", method: :post, model: @user do |form| %>
-    <h3><div style="text-align: center">Sign in</div></h3>
+  <h3><div style="text-align: center">Sign up</div></h3>
     <div>
       <%= form.label :email %><br>
       <%= form.text_field :email %>
@@ -16,14 +16,7 @@
 
     <br>
     <div>
-      <%= form.submit 'Sign in', class: "button" %>
-    </div>
-
-    <br>
-    <hr class="solid">
-
-    <div>
-      <%= form.button "Sign up", formmethod: "get", class: "button input" %>
+      <%= form.submit 'Sign up', class: "button" %>
     </div>
   <% end %>
 </div>

@@ -1,9 +1,22 @@
 class UsersController < ApplicationController
   def sign_up
-    byebug
+    @user = User.new
   end
 
   def sign_in
+    @user = User.new
+  end
+
+  def sign_up
+    @user = User.new
+  end
+
+  def create
+    @user = User.new
+  end
+
+  def new_session
+    byebug
     @user = User.new
   end
 
@@ -15,5 +28,9 @@ class UsersController < ApplicationController
 
   def page_title
     'User'
+  end
+
+  def user_params
+
   end
 end
