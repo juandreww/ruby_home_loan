@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   resource :users
   namespace :users do
-    get 'sign_in', to: "sign_in"
-    get 'sign_up', to: "sign_up"
-    post 'new_session', to: "new_session"
+    get 'sign_in', to: 'sign_in'
+    get 'sign_up', to: 'sign_up'
+    post 'new_session', to: 'new_session'
   end
 end

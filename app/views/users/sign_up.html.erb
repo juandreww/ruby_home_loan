@@ -1,14 +1,14 @@
 <div class = "body-align-middle">
-  <%= form_with url: "/users/new_session", method: :post, model: @user do |form| %>
-    <h3><div style="text-align: center">Sign up</div></h3>
+  <%= form_with url: "/users/create", method: :post, model: @user do |form| %>
+    <h3><div style="text-align: center">Sign up</div></h3><br>
     <div>
-      <%= form.label :email %><br>
+      <%= form.label :email, 'New Email' %><br>
       <%= form.text_field :email %>
     </div>
 
     <br>
     <div>
-      <%= form.label :password %><br>
+      <%= form.label :password, 'New Password' %><br>
       <%= form.password_field :password, id:"password" %>
     </div>
 
