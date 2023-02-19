@@ -2,14 +2,26 @@
   <%= form_with url: "/users/create", method: :post, model: @user do |form| %>
     <h3><div style="text-align: center">Sign up</div></h3><br>
     <div>
-      <%= form.label :email, 'New Email' %><br>
+      <%= form.label :email %><br>
       <%= form.text_field :email %>
     </div>
 
     <br>
     <div>
-      <%= form.label :password, 'New Password' %><br>
-      <%= form.password_field :password, id:"password" %>
+      <%= form.label :password %><br>
+      <%= form.password_field :password_digest, id:"password" %>
+    </div>
+
+    <br>
+    <div>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </div>
+
+    <br>
+    <div>
+      <%= form.label :phone %><br>
+      <%= form.text_field :phone %>
     </div>
 
     <br>

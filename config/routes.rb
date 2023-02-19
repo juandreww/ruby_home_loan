@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   resources :brands
 
-  resources :users
   namespace :users do
     get 'sign_in', to: 'sign_in'
     get 'sign_up', to: 'sign_up'

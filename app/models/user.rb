@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  validates :email, email: true
-  validates :name, :password_digest, :phone, :user_uuid, presence: true
+  validates :email, email: true, uniqueness: { case_sensitive: false }
+  validates :phone, uniqueness: { case_sensitive: false }
+  validates :name, format: { with: /[a-zA-Z0-9]/}
+  validates :password_digest, :user_uuid, presence: true
 end
