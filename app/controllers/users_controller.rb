@@ -22,11 +22,8 @@ class UsersController < ApplicationController
   end
 
   def new_session
-    byebug
     @user = User.new
   end
-
-  def successful_sign_up; end
 
   def forgot_password; end
 
@@ -34,10 +31,12 @@ class UsersController < ApplicationController
     'User'
   end
 
+  def show
+  end
+
   private
 
   def create_params
-    byebug
-    params.require(:user).permit(:email, :password)
+    params.permit(:email, :password)
   end
 end

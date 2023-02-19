@@ -3,5 +3,5 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  validates :email_attributes, email: true
+  validates :email, email: true
 end

@@ -6,10 +6,11 @@ Rails.application.routes.draw do
 
   resources :brands
 
-  resource :users
+  resources :users
   namespace :users do
     get 'sign_in', to: 'sign_in'
     get 'sign_up', to: 'sign_up'
     post 'new_session', to: 'new_session'
+    post 'create', to: 'create'
   end
 end
