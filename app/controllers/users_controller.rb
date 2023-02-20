@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     @user = User.find_by_email(new_session_params[:email])
 
     if @user.present? && BCrypt::Password.new(@user.password_digest) == new_session_params[:password_digest]
+      session['user_uuid'] = @user.user_uuid
       redirect_to '/users/sign_in', notice: "Successfully started new session"
     else
       render :sign_in, status: :unprocessable_entity
