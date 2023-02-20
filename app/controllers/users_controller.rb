@@ -4,6 +4,13 @@ class UsersController < ApplicationController
   end
 
   def sign_in
+    @user = User.find_by(user_uuid: session[:user_uuid])
+
+    if @user.present?
+      redirect_to '/users/sign_up', notice: "Logged in as #{@user.name}"
+      return
+    end
+
     @user = User.new
   end
 
@@ -14,7 +21,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(create_params)
     @user.user_uuid = SecureRandom.uuid
-    @user.password_digest = BCrypt::Password.create(params[:user][:password_digest])
 
     if @user.save
       redirect_to '/users/sign_in', notice: "Successfully created new User"
@@ -43,7 +49,7 @@ class UsersController < ApplicationController
   private
 
   def create_params
-    create_params ||= params.require(:user).permit(:email, :name, :phone)
+    create_params ||= params.require(:user).permit(:email, :name, :password, :phone)
 
     create_params
   end
