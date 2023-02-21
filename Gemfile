@@ -57,6 +57,7 @@ gem 'jquery-rails'
 
 gem 'email_validator'
 gem 'twilio-ruby'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -66,6 +67,7 @@ group :development, :test do
   gem 'rspec-rails', '>=  3.9.0'
   gem 'rubocop'
   gem 'rubocop-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -85,5 +87,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
-gem 'factory_bot_rails'
