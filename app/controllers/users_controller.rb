@@ -40,6 +40,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def send_otp_code
+    response = VerificationService.new(
+      send_otp_params[:phone]
+    ).send_otp_code
+  end
+
   def forgot_password; end
 
   def page_title
@@ -58,5 +64,11 @@ class UsersController < ApplicationController
     new_session_params ||= params.require(:user).permit(:email, :password_digest)
 
     new_session_params
+  end
+
+  def send_otp_params
+    send_otp_params ||= params.require(:user).permit(:phone)
+
+    send_otp_params
   end
 end
