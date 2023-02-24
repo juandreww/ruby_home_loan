@@ -44,6 +44,11 @@ class UsersController < ApplicationController
     response = VerificationService.new(
       send_otp_params[:phone]
     ).send_otp_code
+
+    render json: {
+      phone: send_otp_params[:phone],
+      message: response
+    }
   end
 
   def forgot_password; end
