@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  enum status: { activated: 0, deactivated: 1, verify: 2 }
+
   validates :email, email: true, uniqueness: { case_sensitive: false }
   validates :phone, uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 8 }, format: { with: %r{\A[A-Za-z0-9-/.\s]+\z} }
@@ -10,6 +12,10 @@ class User < ApplicationRecord
   validates :user_uuid, presence: true
 
   validate :password_requirements_are_met
+
+  def assign_status
+    self.status = User.statuses[:verify] if status.nil?
+  end
 
   def password_requirements_are_met
     rules = {

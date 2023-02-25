@@ -23,9 +23,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(create_params)
     @user.user_uuid = SecureRandom.uuid
+    @user.otp = SecureRandom.alphanumeric(8).upcase
+    @user.assign_status
 
     if @user.save
-      redirect_to '/users/sign_in', notice: "Successfully created new User"
+      send_otp_code(@user)
+      redirect_to '/users/sign_in', notice: "Successfully created new user. OTP has been sent for verification"
     else
       render :sign_up, status: :unprocessable_entity
     end
@@ -42,17 +45,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def send_otp_code
-    response = VerificationService.new(
-      send_otp_params[:phone]
-    ).send_otp_code
-
-    render json: {
-      phone: send_otp_params[:phone],
-      message: response
-    }
-  end
-
   def forgot_password; end
 
   def page_title
@@ -60,6 +52,16 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def send_otp_code(user)
+    response = VerificationService.new(
+      @user.name,
+      @user.phone,
+      @user.otp.to_s
+    ).send_otp_code
+
+    return response
+  end
 
   def create_params
     create_params ||= params.require(:user).permit(:email, :name, :password, :phone)
@@ -73,9 +75,9 @@ class UsersController < ApplicationController
     new_session_params
   end
 
-  def send_otp_params
-    send_otp_params ||= params.require(:user).permit(:phone)
+  # def send_otp_params
+  #   send_otp_params ||= params.require(:user).permit(:phone)
 
-    send_otp_params
-  end
+  #   send_otp_params
+  # end
 end
