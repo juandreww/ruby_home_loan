@@ -1,0 +1,25 @@
+<div class = "body-align-middle">
+  <%= form_with url: "/users/verify?id=#{@user.id}", method: :post, model: @user do |form| %>
+    <h3><div style="text-align: center">Verify your Account</div></h3><br>
+    <div>
+      <%= form.label :otp, 'OTP' %><br>
+      <%= form.text_field :otp %>
+    </div>
+
+    <br>
+    <div>
+      <%= form.submit 'Verify', class: "button" %>
+    </div>
+
+    <% if @user.errors.any? %>
+      <div style="color: red">
+        <br>
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
+</div>

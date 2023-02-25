@@ -11,10 +11,12 @@ Rails.application.routes.draw do
   resources :brands
 
   namespace :users do
+    get 'verification', to: 'verification'
     get 'sign_in', to: 'sign_in'
     get 'sign_up', to: 'sign_up'
     post 'new_session', to: 'new_session'
     post 'create', to: 'create'
     post 'send_otp_code', to: 'send_otp_code'
+    post 'verify', to: 'verify'
   end
 end

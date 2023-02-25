@@ -8,12 +8,10 @@ class UsersController < ApplicationController
   def sign_in
     @user = User.find_by(user_uuid: session[:user_uuid])
 
-    if @user.present?
-      redirect_to '/users/sign_up', notice: "Logged in as #{@user.name}"
-      return
-    end
-
-    @user = User.new
+    # if @user.present?
+    #   redirect_to '/users/sign_up', notice: "Logged in as #{@user.name}"
+    #   return
+    # end
   end
 
   def sign_up
@@ -37,12 +35,48 @@ class UsersController < ApplicationController
   def new_session
     @user = User.find_by_email(new_session_params[:email])
 
-    if @user.present? && BCrypt::Password.new(@user.password_digest) == new_session_params[:password_digest]
+    user_and_password_matches = @user.present? && BCrypt::Password.new(@user.password_digest) == new_session_params[:password_digest]
+
+    if user_and_password_matches && @user.status = User.statuses[:verify]
+      redirect_to "/users/verification?id=#{@user.id}", notice: "Please verify your account"
+    elsif user_and_password_matches
       session['user_uuid'] = @user.user_uuid
       redirect_to '/users/sign_in', notice: "Successfully started new session"
     else
       render :sign_in, status: :unprocessable_entity
     end
+  end
+
+  def verification
+    @user = User.find_by(id: params[:id])
+
+    if !@user
+      render :sign_in, status: :unprocessable_entity
+      return
+    elsif @user.status == 'activated'
+      render :sign_in, notice: "Logged in as #{@user.name}"
+      return
+    end
+  end
+
+  def verify
+    @user = User.find_by(id: params[:id])
+
+    unless @user
+      render :sign_in, status: :unprocessable_entity
+      return
+    end
+
+    if @user.otp == verify_params[:otp]
+      @user.update!(status: User.statuses[:activated])
+    else
+      @user.errors.add(:otp, message: " field: Wrong OTP")
+
+      render :verification, status: :unprocessable_entity
+      return
+    end
+
+    render 'sign_in', notice: "Logged in as #{@user.name}"
   end
 
   def forgot_password; end
@@ -75,9 +109,9 @@ class UsersController < ApplicationController
     new_session_params
   end
 
-  # def send_otp_params
-  #   send_otp_params ||= params.require(:user).permit(:phone)
+  def verify_params
+    verify_params ||= params.require(:user).permit(:otp)
 
-  #   send_otp_params
-  # end
+    verify_params
+  end
 end

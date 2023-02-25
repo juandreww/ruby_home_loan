@@ -5,7 +5,7 @@ class SendPinWorker
     account_sid = ENV['ACCOUNT_SID']
     auth_token = ENV['AUTH_TOKEN']
     service_sid = ENV['SERVICE_SID']
-    # auth_token = 'failed'
+    auth_token = 'failed'
     client = Twilio::REST::Client.new(account_sid, auth_token)
 
     message = client.messages.create(
