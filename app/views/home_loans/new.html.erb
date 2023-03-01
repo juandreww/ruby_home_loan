@@ -1,0 +1,45 @@
+<div class = "body-align-middle">
+  <%= form_with url: "/users/new_session", method: :post, model: @user do |form| %>
+    <h3><div style="text-align: center">Sign in</div></h3>
+    <div>
+      <%= form.label :email %><br>
+      <%= form.text_field :email %>
+    </div>
+
+    <br>
+    <div>
+      <%= form.label :password %><br>
+      <%= form.password_field :password_digest, id:"password" %>
+    </div>
+
+    <%= render partial: "shared/flash" %>
+
+    <% if @user.errors.any? %>
+      <div style="color: red">
+        <br>
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div>
+      <%= form.submit 'Sign in', class: "button" %>
+    </div>
+
+    <br>
+    <hr class="solid">
+  <% end %>
+
+  <%= form_with url: "/users/sign_up", method: :get, model: @user do |form| %>
+
+    <div>
+      <%= form.submit 'Sign up', class: "button input" %>
+    </div>
+    <div class="white">
+      <%= form.label :password %><br>
+      <%= form.password_field :password, id:"password", class: "white", disabled: true %>
+    </div>
+  <% end %>
+</div>

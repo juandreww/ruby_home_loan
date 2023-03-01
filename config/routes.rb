@@ -19,4 +19,9 @@ Rails.application.routes.draw do
     post 'send_otp_code', to: 'send_otp_code'
     post 'verify', to: 'verify'
   end
+
+  namespace :homeloan do
+    get 'new', to: 'new'
+    post 'calculate', to: 'calculate'
+  end
 end
