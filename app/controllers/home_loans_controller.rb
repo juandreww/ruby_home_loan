@@ -4,4 +4,8 @@ class HomeLoansController < ApplicationController
 
   def calculate
   end
+
+  def page_title
+    'Home Loans'
+  end
 end

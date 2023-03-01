@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     post 'verify', to: 'verify'
   end
 
-  namespace :homeloan do
+  namespace :home_loans do
     get 'new', to: 'new'
     post 'calculate', to: 'calculate'
   end

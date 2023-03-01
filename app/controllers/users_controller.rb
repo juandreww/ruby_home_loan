@@ -8,14 +8,10 @@ class UsersController < ApplicationController
   def sign_in
     @user = User.find_by(user_uuid: session[:user_uuid])
 
-    # if @user.present?
-    #   redirect_to '/users/sign_up', notice: "Logged in as #{@user.name}"
-    #   return
-    # end
-  end
-
-  def sign_up
-    @user = User.new
+    if @user.present?
+      redirect_to '/home_loans/new', notice: "Logged in as #{@user.name}"
+      return
+    end
   end
 
   def create
