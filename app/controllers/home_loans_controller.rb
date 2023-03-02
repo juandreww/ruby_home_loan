@@ -10,7 +10,7 @@ class HomeLoansController < ApplicationController
     total_months = calculate_params[:term_in_years].to_i * 12
     @monthly_payable_amount = total_months.zero? ? 0 : calculate_monthly_payable_amount(total_months)
 
-    return @monthly_payable_amount
+    render json: @monthly_payable_amount.ceil
   end
 
   def calculate_monthly_payable_amount(total_months)
@@ -27,7 +27,6 @@ class HomeLoansController < ApplicationController
   private
 
   def calculate_params
-    byebug
-    calculate_params ||= params.permit(:authenticity_token, :amount, :term_in_years, :monthly_interest_rate)
+    calculate_params ||= params.permit(:amount, :term_in_years, :monthly_interest_rate)
   end
 end
