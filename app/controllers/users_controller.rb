@@ -9,8 +9,10 @@ class UsersController < ApplicationController
     @user = User.find_by(user_uuid: session[:user_uuid])
 
     if @user.present?
-      redirect_to '/home_loans/new', notice: "Logged in as #{@user.name}"
+      render '/home_loans/new', notice: "Logged in as #{@user.name}"
       return
+    else
+      @user = User.new
     end
   end
 
@@ -33,7 +35,7 @@ class UsersController < ApplicationController
 
     user_and_password_matches = @user.present? && BCrypt::Password.new(@user.password_digest) == new_session_params[:password_digest]
 
-    if user_and_password_matches && @user.status = User.statuses[:verify]
+    if user_and_password_matches && @user.verify?
       redirect_to "/users/verification?id=#{@user.id}", notice: "Please verify your account"
     elsif user_and_password_matches
       session['user_uuid'] = @user.user_uuid
