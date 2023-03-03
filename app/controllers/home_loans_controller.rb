@@ -8,9 +8,9 @@ class HomeLoansController < ApplicationController
     total_amount = 0
 
     total_months = calculate_params[:term_in_years].to_i * 12
-    @monthly_payable_amount = total_months.zero? ? 0 : calculate_monthly_payable_amount(total_months)
+    monthly_payable_amount = total_months.zero? ? 0 : calculate_monthly_payable_amount(total_months)
 
-    render json: @monthly_payable_amount.ceil
+    redirect_to '/home_loans/new', notice: "Amount you have to pay per month is #{ActionController::Base.helpers.number_to_currency(monthly_payable_amount.ceil, unit: "IDR ")}"
   end
 
   def calculate_monthly_payable_amount(total_months)

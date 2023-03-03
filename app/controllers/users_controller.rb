@@ -41,6 +41,7 @@ class UsersController < ApplicationController
       session['user_uuid'] = @user.user_uuid
       redirect_to '/users/sign_in', notice: "Successfully started new session"
     else
+      @user = User.new if @user.nil?
       render :sign_in, status: :unprocessable_entity
     end
   end
