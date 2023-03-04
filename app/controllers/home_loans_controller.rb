@@ -6,6 +6,9 @@ class HomeLoansController < ApplicationController
 
   def calculate
     total_amount = 0
+    session[:amount] = calculate_params[:amount]
+    session[:term_in_years] = calculate_params[:term_in_years]
+    session[:monthly_interest_rate] = calculate_params[:monthly_interest_rate]
 
     total_months = calculate_params[:term_in_years].to_i * 12
     monthly_payable_amount = total_months.zero? ? 0 : calculate_monthly_payable_amount(total_months)
