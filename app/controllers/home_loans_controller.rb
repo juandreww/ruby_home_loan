@@ -1,14 +1,24 @@
 class HomeLoansController < ApplicationController
   skip_before_action :verify_authenticity_token
+  rescue_from Exception, with: :amount_exceed_limit
 
   def new
   end
 
+  def amount_exceed_limit
+    redirect_to '/home_loans/new', notice: "Loan amount exceeded 100 Billion"
+  end
+
   def calculate
     total_amount = 0
+
     session[:amount] = calculate_params[:amount]
     session[:term_in_years] = calculate_params[:term_in_years]
     session[:monthly_interest_rate] = calculate_params[:monthly_interest_rate]
+
+    if calculate_params[:amount].to_d > 100_000_000_000
+      raise Exception.new "This is an exception"
+    end
 
     total_months = calculate_params[:term_in_years].to_i * 12
     monthly_payable_amount = total_months.zero? ? 0 : calculate_monthly_payable_amount(total_months)
