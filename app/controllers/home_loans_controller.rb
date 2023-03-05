@@ -51,23 +51,15 @@ class HomeLoansController < ApplicationController
   def print_pdf
     respond_to do |format|
       format.pdf do
-        send_data generate_pdf,
-                  filename: "test_pdf.pdf",
-                  type: "application/pdf"
-        receipt_pdf.render_file 'my_pdf_file.pdf'
+        return send_data HomeLoan.build.render,
+                filename: "test_pdf.pdf",
+                type: "application/pdf",
+                disposition: :attachment
       end
     end
   end
 
   private
-
-  def generate_pdf
-    Prawn::Document.new do
-      text "Test Title", align: :center
-      text "Address"
-      text "Email"
-    end
-  end
 
   def calculate_params
     calculate_params ||= params.permit(:amount, :term_in_years, :monthly_interest_rate)

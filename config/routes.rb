@@ -24,6 +24,6 @@ Rails.application.routes.draw do
     get 'new', to: 'new'
     post 'calculate', to: 'calculate'
     get 'reset', to: 'reset'
-    get 'print_pdf', to: 'print_pdf'
+    post 'print_pdf', to: 'print_pdf'
   end
 end
