@@ -20,7 +20,10 @@ class HomeLoansController < ApplicationController
     monthly_interest_rate = calculate_params[:monthly_interest_rate].to_d / 100
     initial_amount = calculate_params[:amount].to_d
 
-    initial_amount / total_months + (monthly_interest_rate * initial_amount)
+    monthly_payable_amount = initial_amount / total_months
+    monthly_payable_amount_after_interest = monthly_payable_amount + (monthly_interest_rate * monthly_payable_amount)
+
+    monthly_payable_amount_after_interest
   end
 
   def page_title
