@@ -1,3 +1,5 @@
+require "prawn"
+
 class HomeLoansController < ApplicationController
   skip_before_action :verify_authenticity_token
   rescue_from Exception, with: :amount_exceed_limit
@@ -51,7 +53,7 @@ class HomeLoansController < ApplicationController
   def print_pdf
     respond_to do |format|
       format.pdf do
-        return send_data HomeLoan.build.render,
+        return send_data build_pdf.render,
                 filename: "test_pdf.pdf",
                 type: "application/pdf",
                 disposition: :attachment
@@ -60,6 +62,14 @@ class HomeLoansController < ApplicationController
   end
 
   private
+
+  def build_pdf
+    pdf = Prawn::Document.new
+
+    pdf.text "Test Title", align: :center
+    pdf.text "Address"
+    pdf.text "Email"
+  end
 
   def calculate_params
     calculate_params ||= params.permit(:amount, :term_in_years, :monthly_interest_rate)

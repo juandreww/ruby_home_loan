@@ -3,8 +3,10 @@ require 'prawn'
 class HomeLoan
   include Prawn::View
 
+  def initialize
+  end
+
   def build
-    byebug
     pdf = Prawn::Document.new
 
     pdf.text "Test Title", align: :center

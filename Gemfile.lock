@@ -350,6 +350,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   pg (~> 1.1)
+  prawn
   prawn-rails
   puma (~> 5.0)
   rails (~> 7.0.4)
@@ -368,6 +369,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
+  zeitwerk
 
 RUBY VERSION
    ruby 3.1.2p20
