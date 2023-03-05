@@ -2,7 +2,7 @@ require "prawn"
 
 class HomeLoansController < ApplicationController
   skip_before_action :verify_authenticity_token
-  rescue_from Exception, with: :amount_exceed_limit
+  # rescue_from Exception, with: :amount_exceed_limit
 
   def new
   end
@@ -24,6 +24,7 @@ class HomeLoansController < ApplicationController
 
     total_months = calculate_params[:term_in_years].to_i * 12
     monthly_payable_amount = total_months.zero? ? 0 : calculate_monthly_payable_amount(total_months)
+    session[:latest_calculated_monthly_payable_amount] = monthly_payable_amount
 
     redirect_to '/home_loans/new', notice: "Amount you have to pay per month is #{ActionController::Base.helpers.number_to_currency(monthly_payable_amount.ceil, unit: "IDR ")}"
   end
@@ -53,10 +54,9 @@ class HomeLoansController < ApplicationController
   def print_pdf
     respond_to do |format|
       format.pdf do
-        return send_data build_pdf.render,
-                filename: "test_pdf.pdf",
-                type: "application/pdf",
-                disposition: :attachment
+        send_data(build_pdf.render,
+                  filename: 'hello.pdf',
+                  type: 'application/pdf')
       end
     end
   end
@@ -66,9 +66,15 @@ class HomeLoansController < ApplicationController
   def build_pdf
     pdf = Prawn::Document.new
 
-    pdf.text "Test Title", align: :center
-    pdf.text "Address"
-    pdf.text "Email"
+    pdf.text "Beginning Loan Calculation", align: :center
+    pdf.move_down 10
+    pdf.text "Amount to be borrowed: #{ActionController::Base.helpers.number_to_currency(session[:amount].to_d.ceil, unit: "IDR ")}"
+    pdf.text "Term of Loan: #{session[:term_in_years].to_i} years"
+    pdf.text "Monthly Interest Rate: #{session[:monthly_interest_rate].to_i}"
+    pdf.text ""
+    pdf.text "Amount to be paid per month is #{ActionController::Base.helpers.number_to_currency(session[:latest_calculated_monthly_payable_amount].to_d.ceil, unit: "IDR ")}"
+
+    pdf
   end
 
   def calculate_params
