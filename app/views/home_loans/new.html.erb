@@ -38,4 +38,13 @@
       <%= form.password_field :password, id:"password", class: "white", disabled: true %>
     </div>
   <% end %>
+  <%= form_with url: "/home_loans/reset", method: :get do |form| %>
+    <div>
+      <%= form.submit 'Reset Calculation', class: "button input" %>
+    </div>
+    <div class="white">
+      <%= form.label :password %><br>
+      <%= form.password_field :password, id:"password", class: "white", disabled: true %>
+    </div>
+  <% end %>
 </div>

@@ -58,6 +58,7 @@ gem 'jquery-rails'
 gem 'email_validator'
 gem 'twilio-ruby'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'prawn-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
