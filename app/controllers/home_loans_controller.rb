@@ -40,6 +40,14 @@ class HomeLoansController < ApplicationController
     'Home Loans'
   end
 
+  def reset
+    session.delete(:amount)
+    session.delete(:term_in_years)
+    session.delete(:monthly_interest_rate)
+
+    redirect_to '/home_loans/new'
+  end
+
   private
 
   def calculate_params

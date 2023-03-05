@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   namespace :home_loans do
     get 'new', to: 'new'
     post 'calculate', to: 'calculate'
+    get 'reset', to: 'reset'
   end
 end
