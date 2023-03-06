@@ -22,7 +22,7 @@ class HomeLoansController < ApplicationController
     session[:amount] = calculate_params[:amount]
     session[:term_in_years] = calculate_params[:term_in_years]
     session[:monthly_interest_rate] = calculate_params[:monthly_interest_rate]
-
+    byebug
     if calculate_params[:amount].to_d > 100_000_000_000
       raise Exception.new "This is an exception"
     end
