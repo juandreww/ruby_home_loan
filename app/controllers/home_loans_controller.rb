@@ -2,13 +2,18 @@ require "prawn"
 
 class HomeLoansController < ApplicationController
   skip_before_action :verify_authenticity_token
-  # rescue_from Exception, with: :amount_exceed_limit
+  rescue_from Exception, with: :amount_exceed_limit
+  rescue_from ZeroMonthlyInterestRate, with: :zero_monthly_interest_rate
 
   def new
   end
 
   def amount_exceed_limit
     redirect_to '/home_loans/new', notice: "Loan amount exceeded 100 Billion"
+  end
+
+  def zero_monthly_interest_rate
+    redirect_to '/home_loans/new', notice: "Monthly Interest Rate cannot be zero"
   end
 
   def calculate
@@ -54,6 +59,10 @@ class HomeLoansController < ApplicationController
   def print_pdf
     respond_to do |format|
       format.pdf do
+        if session[:monthly_interest_rate].to_d == 0
+          raise ZeroMonthlyInterestRate.new "This is an exception"
+        end
+
         send_data(build_pdf.render,
                   filename: 'hello.pdf',
                   type: 'application/pdf')
