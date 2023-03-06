@@ -40,7 +40,7 @@
   <% end %>
   <%= form_with url: "/home_loans/print_pdf.pdf", method: :post do |form| %>
     <div>
-      <%= form.submit 'Download PDF', class: "button input" %>
+      <%= form.submit 'Download PDF', class: "button input", disabled: session[:amount].to_d.zero? %>
     </div>
     <div class="white">
       <%= form.label :password %><br>
