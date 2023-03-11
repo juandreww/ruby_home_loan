@@ -17,7 +17,7 @@ class HomeLoansController < ApplicationController
   end
 
   def calculate
-    total_amount = 0
+    total_amount = 01
 
     session[:amount] = calculate_params[:amount]
     session[:term_in_years] = calculate_params[:term_in_years]
