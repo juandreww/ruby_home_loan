@@ -4,6 +4,7 @@ class ProfileController < ApplicationController
   end
 
   def show
+    @user = User.find_by! id: params[:id]
   end
 
   def edit
@@ -11,4 +12,6 @@ class ProfileController < ApplicationController
 
   def update
   end
+
+  private
 end

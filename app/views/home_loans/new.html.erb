@@ -49,13 +49,13 @@
   <% end %>
   <% if @user %>
     <%= form_with url: "/admin/profile/#{@user.id}", method: :get do |form| %>
-    <div>
-      <%= form.submit 'Open Profile', class: "button input", disabled: session[:amount].to_d.zero? %>
-    </div>
-    <div class="white">
-      <%= form.label :password %><br>
-      <%= form.password_field :password, id:"password", class: "white", disabled: true %>
-    </div>
-  <% end %>
+      <div>
+        <%= form.submit 'Open Profile', class: "button input" %>
+      </div>
+      <div class="white">
+        <%= form.label :password %><br>
+        <%= form.password_field :password, id:"password", class: "white", disabled: true %>
+      </div>
+    <% end %>
   <% end %>
 </div>
