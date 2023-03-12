@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.find_by(user_uuid: session[:user_uuid])
 
     if @user.present?
-      render '/home_loans/new', notice: "Logged in as #{@user.name}"
+      redirect_to '/home_loans/new', notice: "Logged in as #{@user.name}"
       return
     else
       @user = User.new
