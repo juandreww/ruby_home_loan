@@ -1,0 +1,40 @@
+<div class = "body-align-middle">
+  <%= form_with url: "/admin/profile/#{@user.id}", method: :post, model: @user do |form| %>
+    <h3><div style="text-align: center"><%= "Edit Profile" %></div></h3>
+    <br>
+    <div>
+      <%= form.label :email %><br>
+      <%= form.text_field :email, class: "background-white"%>
+    </div>
+    <br>
+    <div>
+      <%= form.label :name %><br>
+      <%= form.text_field :name, class: "background-white"%>
+    </div>
+    <br>
+    <div>
+      <%= form.label :phone %><br>
+      <%= form.text_field :phone, class: "background-white"%>
+    </div>
+    <br>
+    <div>
+      <%= form.label :status %><br>
+      <%= form.text_field :status, class: "background-white"%>
+    </div>
+    <br>
+    <br>
+    <div>
+      <%= form.submit 'Update Profile', class: "button" %>
+    </div>
+  <% end %>
+  <br>
+  <%= form_with url: "/admin/profile/#{@user.id}", method: :get do |form| %>
+    <div>
+      <%= form.submit 'Back', class: "button input" %>
+    </div>
+    <div class="white">
+      <%= form.label :password %><br>
+      <%= form.password_field :password, id:"password", class: "white", disabled: true %>
+    </div>
+  <% end %>
+</div>

@@ -21,8 +21,11 @@
       <%= form.label :status %><br>
       <%= form.text_field :status, class: "background-white", disabled: true %>
     </div>
+    <br>
+    <div>
+      <%= form.submit 'Edit Profile', class: "button" %>
+    </div>
   <% end %>
-  <br>
   <br>
   <%= form_with url: "/home_loans/new", method: :get do |form| %>
     <div>
