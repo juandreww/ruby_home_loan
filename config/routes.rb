@@ -28,5 +28,9 @@ Rails.application.routes.draw do
     post 'print_pdf', to: 'print_pdf'
   end
 
+  namespace :admin do
+    resources :profile, only: [:show, :edit, :update]
+  end
+
   get 'download', to: "profile#download"
 end
