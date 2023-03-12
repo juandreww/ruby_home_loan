@@ -1,4 +1,25 @@
 <div class = "body-align-middle">
-  <h3><div style="text-align: center"><%= "#{@user.name}" %></div></h3>
-  <br>
+  <%= form_with url: "/admin/profile/#{@user.id}/edit", method: :get, model: @user do |form| %>
+    <h3><div style="text-align: center"><%= "#{@user.name}" %></div></h3>
+    <br>
+    <div>
+      <%= form.label :email %><br>
+      <%= form.text_field :email, class: "background-white", disabled: true %>
+    </div>
+    <br>
+    <div>
+      <%= form.label :name %><br>
+      <%= form.text_field :name, class: "background-white", disabled: true %>
+    </div>
+    <br>
+    <div>
+      <%= form.label :phone %><br>
+      <%= form.text_field :phone, class: "background-white", disabled: true %>
+    </div>
+    <br>
+    <div>
+      <%= form.label :status %><br>
+      <%= form.text_field :status, class: "background-white", disabled: true %>
+    </div>
+  <% end %>
 </div>
