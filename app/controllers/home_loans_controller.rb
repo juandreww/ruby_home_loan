@@ -6,6 +6,12 @@ class HomeLoansController < ApplicationController
   rescue_from ZeroMonthlyInterestRate, with: :zero_monthly_interest_rate
 
   def new
+    if !session[:user_uuid]
+      redirect_to '/users/sign_in', notice: "Please login first"
+      return
+    end
+
+    @user = User.find_by(user_uuid: session[:user_uuid])
   end
 
   def amount_exceed_limit
