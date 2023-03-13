@@ -32,5 +32,9 @@ Rails.application.routes.draw do
     resources :profile, only: [:show, :edit, :update]
   end
 
+  scope module: 'admin' do
+    resources :profile, only: [:show, :edit, :update]
+  end
+
   get 'download', to: "profile#download"
 end

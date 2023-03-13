@@ -1,6 +1,6 @@
 <div class = "body-align-middle">
   <%= form_with url: "/admin/profile/#{@user.id}/edit", method: :get, model: @user do |form| %>
-    <h3><div style="text-align: center"><%= "Profile #{@user.name}" %></div></h3>
+    <h3><div style="text-align: center"><%= "My Profile" %></div></h3>
     <br>
     <div>
       <%= form.label :email %><br>
