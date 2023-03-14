@@ -13,6 +13,14 @@ class User < ApplicationRecord
 
   validate :password_requirements_are_met, on: :create
 
+  def following
+    FollowersUser.where(user_follower_id: id)
+  end
+
+  def followers
+    FollowersUser.where(user_id: id)
+  end
+
   def assign_status
     self.status = User.statuses[:verify] if status.nil?
   end

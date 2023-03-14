@@ -24,6 +24,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_004413) do
     t.string "vision"
   end
 
+  create_table "followers_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "followed_at"
+    t.bigint "user_follower_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_follower_id"], name: "index_followers_users_on_user_follower_id"
+    t.index ["user_id"], name: "index_followers_users_on_user_id"
+  end
+
   create_table "owners", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -42,16 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_004413) do
     t.integer "status", null: false
   end
 
-  create_table "users_followers", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.datetime "followed_at"
-    t.bigint "user_follower_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_follower_id"], name: "index_users_followers_on_user_follower_id"
-    t.index ["user_id"], name: "index_users_followers_on_user_id"
-  end
-
-  add_foreign_key "users_followers", "users"
-  add_foreign_key "users_followers", "users", column: "user_follower_id"
+  add_foreign_key "followers_users", "users"
+  add_foreign_key "followers_users", "users", column: "user_follower_id"
 end
