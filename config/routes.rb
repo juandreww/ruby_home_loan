@@ -29,11 +29,15 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :profile, only: [:show, :edit, :update, :edit_password]
+    resources :profile, only: [:show, :edit, :update] do
+      member do
+        get '/edit_password', to: 'profile#edit_password'
+      end
+    end
   end
 
   scope module: 'admin' do
-    resources :profile, only: [:show, :edit, :update, :edit_password]
+    resources :profile, only: [:show, :edit, :update]
   end
 
   get 'download', to: "profile#download"
