@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :profile, only: [:show, :edit, :update] do
       member do
         get '/edit_password', to: 'profile#edit_password'
+        post '/update_password', to: 'profile#update_password'
       end
     end
   end

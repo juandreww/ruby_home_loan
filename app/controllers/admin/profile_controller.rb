@@ -24,6 +24,32 @@ class Admin::ProfileController < ApplicationController
     end
   end
 
+  def update_password
+    if !filtered_user
+      redirect_to '/users/sign_in', notice: "Please login first"
+      return
+    end
+
+    user_and_password_matches = BCrypt::Password.new(filtered_user.password_digest) == update_password_params[:old_password]
+
+    draft_user = filtered_user
+    draft_user.password = update_password_params[:new_password]
+
+    if draft_user.errors.any?
+      render :edit_password, status: :unprocessable_entity
+      return
+    end
+
+    if user_and_password_matches
+
+    else
+      redirect_to "/profile/#{filtered_user.id}/edit_password", notice: "Password do not match"
+      return
+    end
+
+    redirect_to "/profile/#{filtered_user.id}", notice: "Successfully changed password"
+  end
+
   def update
     if !filtered_user
       redirect_to '/users/sign_in', notice: "Please login first"
@@ -55,5 +81,9 @@ class Admin::ProfileController < ApplicationController
 
   def update_params
     update_params ||= params.require(:user).permit(:name)
+  end
+
+  def update_password_params
+    update_params ||= params.require(:user).permit(:old_password, :new_password)
   end
 end
