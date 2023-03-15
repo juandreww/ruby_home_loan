@@ -17,6 +17,13 @@ class Admin::ProfileController < ApplicationController
     end
   end
 
+  def edit_password
+    if !filtered_user
+      redirect_to '/users/sign_in', notice: "Please login first"
+      return
+    end
+  end
+
   def update
     if !filtered_user
       redirect_to '/users/sign_in', notice: "Please login first"
