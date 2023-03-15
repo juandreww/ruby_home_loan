@@ -35,19 +35,18 @@ class Admin::ProfileController < ApplicationController
     draft_user = filtered_user
     draft_user.password = update_password_params[:new_password]
 
-    if draft_user.errors.any?
+    if draft_user.invalid?
       render :edit_password, status: :unprocessable_entity
       return
     end
 
     if user_and_password_matches
-
+      draft_user.save!
+      redirect_to "/profile/#{filtered_user.id}", notice: "Successfully changed password"
     else
       redirect_to "/profile/#{filtered_user.id}/edit_password", notice: "Password do not match"
       return
     end
-
-    redirect_to "/profile/#{filtered_user.id}", notice: "Successfully changed password"
   end
 
   def update

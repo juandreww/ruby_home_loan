@@ -23,6 +23,16 @@
     </div>
   <% end %>
   <br>
+  <%= form_with url: "/admin/profile/#{@user.id}/edit_password", method: :get do |form| %>
+    <div>
+      <%= form.submit 'Edit Password', class: "button input" %>
+    </div>
+    <div class="white">
+      <%= form.label :password %><br>
+      <%= form.password_field :password, id:"password", class: "white", disabled: true %>
+    </div>
+  <% end %>
+  <br>
   <%= form_with url: "/admin/profile/#{@user.id}", method: :get do |form| %>
     <div>
       <%= form.submit 'Back', class: "button input" %>

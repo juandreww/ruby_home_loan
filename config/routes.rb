@@ -38,7 +38,12 @@ Rails.application.routes.draw do
   end
 
   scope module: 'admin' do
-    resources :profile, only: [:show, :edit, :update]
+    resources :profile, only: [:show, :edit, :update] do
+      member do
+        get '/edit_password', to: 'profile#edit_password'
+        post '/update_password', to: 'profile#update_password'
+      end
+    end
   end
 
   get 'download', to: "profile#download"

@@ -7,11 +7,11 @@ class User < ApplicationRecord
 
   validates :email, email: true, uniqueness: { case_sensitive: false }
   validates :phone, uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 8 }, format: { with: %r{\A[A-Za-z0-9-/.\s]+\z} }, on: :create
+  validates :password, length: { minimum: 8 }, format: { with: %r{\A[A-Za-z0-9-/.\s]+\z} }
   validates :name, format: { with: /[a-zA-Z0-9]/ }
   validates :user_uuid, presence: true
 
-  validate :password_requirements_are_met, on: :create
+  validate :password_requirements_are_met
 
   def following
     FollowersUser.where(user_follower_id: id)

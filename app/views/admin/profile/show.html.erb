@@ -12,7 +12,7 @@
         <td style="text-align: center"><%= @user.followers.count %></td>
       </tr>
     </table>
-    <br>
+    <%= render partial: "shared/flash" %>
     <div>
       <%= form.label :email %><br>
       <%= form.text_field :email, class: "background-white", disabled: true %>
