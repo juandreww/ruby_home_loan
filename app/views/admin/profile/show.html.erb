@@ -8,8 +8,8 @@
         <th style="border-right: 1px solid black; text-align: center">Followers</th>
       </tr>
       <tr>
-        <td style="text-align: center">0</td>
-        <td style="text-align: center">0</td>
+        <td style="text-align: center"><%= @user.following.count %></td>
+        <td style="text-align: center"><%= @user.followers.count %></td>
       </tr>
     </table>
     <br>
