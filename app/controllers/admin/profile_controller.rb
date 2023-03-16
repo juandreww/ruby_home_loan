@@ -42,7 +42,7 @@ class Admin::ProfileController < ApplicationController
 
     if user_and_password_matches
       draft_user.save!
-      redirect_to "/profile/#{filtered_user.id}", notice: "Successfully changed password"
+      redirect_to "/profile/#{filtered_user.id}", notice: "Successfully changed passwords"
     else
       redirect_to "/profile/#{filtered_user.id}/edit_password", notice: "Password do not match"
       return
