@@ -13,6 +13,8 @@ class User < ApplicationRecord
 
   validate :password_requirements_are_met
 
+  has_one_attached :image
+
   def following
     FollowersUser.where(user_follower_id: id)
   end

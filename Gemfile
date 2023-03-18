@@ -61,6 +61,7 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'prawn-rails'
 gem 'prawn'
 gem 'zeitwerk'
+gem 'devise', git: 'https://github.com/plataformatec/devise'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

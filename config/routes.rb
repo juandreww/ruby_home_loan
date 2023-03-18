@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
 
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
+
   resources :brands
 
   namespace :users do
