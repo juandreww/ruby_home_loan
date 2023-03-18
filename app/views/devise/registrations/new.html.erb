@@ -1,0 +1,23 @@
+<%= stylesheet_link_tag("signup") %>
+<%= javascript include_tag("reinitalise2.js") %>
+<div class="row grey darken-4 login-row">
+  <%= form_for(resource, as: resource_name, html: { id: "form", class: "col s11-m9 16 x14"}, url: registration_path(resource_name)) do |f| %>
+    <h3 class="flow-text center">Create your Resourcer Account</h3>
+    <p class="flow-text center" style="font-size: 16px;">To add Resources</p>
+    <div class="input-field">
+      <%= f.label :email %>
+      <%= f.email_field :email, autocomplete: "email", required: true, class:"validate" %>
+    </div>
+    <div class="input-field">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </div>
+    <div class="input-field" style="position: relative;">
+      <%= f.label :password, style:"pointer-events: none;" %>
+      <%= f.password_field :password, autocomplete: "current-password", required: true, id: "password1" %>
+      <a onclick="visibility()" type="button" style="position: absolute; right: 00px; top: 20%; display: none;" id="visibility">
+        <i class="material-icons">visibility</i>
+      </a>
+    </div>
+  <% end %>
+</div>
