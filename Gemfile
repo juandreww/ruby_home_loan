@@ -64,7 +64,7 @@ gem 'zeitwerk'
 gem 'devise', git: 'https://github.com/plataformatec/devise'
 gem 'carrierwave'
 gem 'bootstrap-sass'
-gem 'graphicsmagick', '~> 1.0', '>= 1.0.5'
+gem 'rmagick'
 gem 'mini_magick'
 
 group :development, :test do
