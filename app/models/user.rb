@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  mount_uploader :image, Attachment
   enum status: { activated: 0, deactivated: 1, verify: 2 }
 
   validates :email, email: true, uniqueness: { case_sensitive: false }
