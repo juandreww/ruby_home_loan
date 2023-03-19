@@ -2,6 +2,10 @@
   <%= form_with url: "/admin/profile/#{@user.id}/edit", method: :get, model: @user do |form| %>
     <h3><div style="text-align: center"><%= "My Profile" %></div></h3>
     <br>
+    <div>
+      <%= image_tag(@user.image.thumb.url, alt: 'Image') %><br>
+    </div>
+    <br>
     <table style="width: 100%">
       <tr>
         <th style="border-right: 2px solid black; border-left: 1px solid black; text-align: center">Following</th>
