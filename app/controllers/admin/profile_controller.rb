@@ -58,7 +58,7 @@ class Admin::ProfileController < ApplicationController
 
     draft_user = filtered_user
     draft_user.assign_attributes(update_params)
-    byebug
+
     if draft_user.invalid?
       render :edit, status: :unprocessable_entity
       return
