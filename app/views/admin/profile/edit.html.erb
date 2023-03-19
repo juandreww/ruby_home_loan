@@ -21,8 +21,17 @@
       <%= form.label :image %><br>
       <%= form.file_field :image, class: "background-white"%>
     </div>
-    <br>
-    <br>
+    <%= render partial: "shared/flash" %>
+    <% if @user.errors.any? %>
+      <div style="color: red">
+        <br>
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div>
       <%= form.submit 'Update Profile', class: "button" %>
     </div>

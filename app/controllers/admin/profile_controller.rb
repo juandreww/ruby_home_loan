@@ -34,6 +34,7 @@ class Admin::ProfileController < ApplicationController
 
     draft_user = filtered_user
     draft_user.password = update_password_params[:new_password]
+    draft_user.password_requirements_are_met
 
     if draft_user.invalid?
       render :edit_password, status: :unprocessable_entity
@@ -57,8 +58,8 @@ class Admin::ProfileController < ApplicationController
 
     draft_user = filtered_user
     draft_user.assign_attributes(update_params)
-
-    if draft_user.errors.any?
+    byebug
+    if draft_user.invalid?
       render :edit, status: :unprocessable_entity
       return
     end
@@ -79,7 +80,7 @@ class Admin::ProfileController < ApplicationController
   end
 
   def update_params
-    update_params ||= params.require(:user).permit(:name)
+    update_params ||= params.require(:user).permit(:name, :image)
   end
 
   def update_password_params
