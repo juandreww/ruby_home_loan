@@ -66,6 +66,7 @@ gem 'carrierwave'
 gem 'bootstrap-sass'
 gem 'rmagick'
 gem 'mini_magick'
+gem 'imagemagick-binaries'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

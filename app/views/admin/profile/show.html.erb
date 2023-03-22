@@ -2,9 +2,9 @@
   <%= form_with url: "/admin/profile/#{@user.id}/edit", method: :get, model: @user do |form| %>
     <h3><div style="text-align: center"><%= "My Profile" %></div></h3>
     <br>
-    <div>
+    <div style="text-align: center">
       <% if @user.image.attached? %>
-        <%= image_tag @user.image %><br>
+        <%= image_tag @user.image, :style => "max-height:150px" %><br>
       <% end %>
     </div>
     <br>

@@ -27,10 +27,6 @@ class User < ApplicationRecord
   #     content_type: image.content_type)
   # end
 
-  def thumbnail
-    return self.image.variant(resize: '300x300')
-  end
-
   def following
     FollowersUser.where(user_follower_id: id)
   end
