@@ -80,7 +80,7 @@ class Admin::ProfileController < ApplicationController
   end
 
   def update_params
-    update_params ||= params.require(:user).permit(:name, images: [])
+    update_params ||= params.require(:user).permit(:name, :image)
   end
 
   def update_password_params

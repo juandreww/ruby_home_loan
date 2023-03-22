@@ -3,7 +3,9 @@
     <h3><div style="text-align: center"><%= "My Profile" %></div></h3>
     <br>
     <div>
-      <%= image_tag(@user.thumbnail(0), alt: 'Image') %><br>
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image %><br>
+      <% end %>
     </div>
     <br>
     <table style="width: 100%">

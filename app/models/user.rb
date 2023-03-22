@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  mount_uploader :image, ImageUploader
+  # mount_uploader :image, ImageUploader
   enum status: { activated: 0, deactivated: 1, verify: 2 }
 
   validates :email, email: true, uniqueness: { case_sensitive: false }
@@ -14,20 +14,21 @@ class User < ApplicationRecord
   validate :password_requirements_are_met, on: :create
 
   has_one_attached :image
-  after_update :scale_image
 
-  def scale_image
-    resized_image = MiniMagick::Image.read(image.download)
-    resized_image.resize('300x300!')
+  # attribute :image_url, default: image
+  # after_update :scale_image
 
-    image.attach(
-      io: File.open(resized_image.path),
-      filename: image.filename,
-      content_type: image.content_type)
-  end
+  # def scale_image
+  #   resized_image = MiniMagick::Image.read(image.download)
+  #   resized_image.resize('300x300!')
+  #   image.attach(
+  #     io: File.open(resized_image.path),
+  #     filename: image.filename,
+  #     content_type: image.content_type)
+  # end
 
-  def thumbnail(input)
-    self.image[input].variant(resize: '300x300').processed
+  def thumbnail
+    return self.image.variant(resize: '300x300')
   end
 
   def following
