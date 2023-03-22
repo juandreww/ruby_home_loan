@@ -19,7 +19,7 @@
     <br>
     <div>
       <%= form.label :image %><br>
-      <%= form.file_field :image, class: "background-white"%>
+      <%= form.file_field :images, multiple: true, class: "background-white"%>
     </div>
     <%= render partial: "shared/flash" %>
     <% if @user.errors.any? %>

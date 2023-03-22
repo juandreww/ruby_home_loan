@@ -14,6 +14,21 @@ class User < ApplicationRecord
   validate :password_requirements_are_met, on: :create
 
   has_one_attached :image
+  after_update :scale_image
+
+  def scale_image
+    resized_image = MiniMagick::Image.read(image.download)
+    resized_image.resize('300x300!')
+
+    image.attach(
+      io: File.open(resized_image.path),
+      filename: image.filename,
+      content_type: image.content_type)
+  end
+
+  def thumbnail(input)
+    self.image[input].variant(resize: '300x300').processed
+  end
 
   def following
     FollowersUser.where(user_follower_id: id)
