@@ -143,8 +143,6 @@ GEM
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    graphicsmagick (1.0.6)
-      subexec
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -198,6 +196,7 @@ GEM
       ast (~> 2.4.1)
     pdf-core (0.9.0)
     pg (1.4.5)
+    pkg-config (1.5.1)
     popper_js (2.11.6)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
@@ -269,6 +268,8 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.5)
+    rmagick (5.2.0)
+      pkg-config (~> 1.4)
     rspec-core (3.12.1)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.2)
@@ -334,7 +335,6 @@ GEM
     ssrf_filter (1.1.1)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
-    subexec (0.2.3)
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.1)
@@ -387,7 +387,6 @@ DEPENDENCIES
   email_validator
   factory_bot_rails
   faker
-  graphicsmagick (~> 1.0, >= 1.0.5)
   importmap-rails
   jbuilder
   jquery-rails
@@ -399,6 +398,7 @@ DEPENDENCIES
   rails (~> 7.0.4)
   redis (~> 4.0)
   redis-rails
+  rmagick
   rspec-rails (>= 3.9.0)
   rubocop
   rubocop-rails
