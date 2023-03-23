@@ -73,6 +73,10 @@ class Admin::ProfileController < ApplicationController
     'Profile'
   end
 
+  def send_telegram
+    byebug
+  end
+
   private
 
   def filtered_user

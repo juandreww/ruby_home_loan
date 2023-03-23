@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       member do
         get '/edit_password', to: 'profile#edit_password'
         post '/update_password', to: 'profile#update_password'
+        post '/send_telegram', to: 'profile#send_telegram'
       end
     end
   end
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
       member do
         get '/edit_password', to: 'profile#edit_password'
         post '/update_password', to: 'profile#update_password'
+        post '/send_telegram', to: 'profile#send_telegram'
       end
     end
   end

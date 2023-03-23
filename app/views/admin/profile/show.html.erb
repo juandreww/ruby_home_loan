@@ -54,15 +54,9 @@
     </div>
   <% end %>
   <br>
-  <%= form_with url: "/home_loans/new", method: :get do |form| %>
-    <div>
-      <%= form.submit 'Open Loan Calculator', class: "button input" %>
-    </div>
-    <div class="white">
-      <%= form.label :password %><br>
-      <%= form.password_field :password, id:"password", class: "white", disabled: true %>
-    </div>
-  <% end %>
-  <%= link_to "Send private message to personal bot", "https://api.telegram.org/bot6093281740:AAF9DShLy7J1le4rrEL3mduDfPrtSl8cPfU/sendMessage?chat_id=816471592&text=yahoo" %>
-  <%= link_to "Send private message to group bot", "https://api.telegram.org/bot6093281740:AAF9DShLy7J1le4rrEL3mduDfPrtSl8cPfU/sendMessage?chat_id=-902149916&text=yahoo" %>
+  <%= link_to "Send private message to personal bot", "https://api.telegram.org/bot6093281740:AAF9DShLy7J1le4rrEL3mduDfPrtSl8cPfU/sendMessage?chat_id=816471592&text=yahoo", target: "_blank" %>
+  <br>
+  <%= link_to "Send private message to group bot", "https://api.telegram.org/bot6093281740:AAF9DShLy7J1le4rrEL3mduDfPrtSl8cPfU/sendMessage?chat_id=-902149916&text=yahoo", target: "_blank" %>
+  <br>
+  <%= link_to "Send private message via controller", profile_send_message_path, method: :post %>
 </div>
