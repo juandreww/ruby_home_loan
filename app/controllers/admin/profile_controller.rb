@@ -5,7 +5,7 @@ class Admin::ProfileController < ApplicationController
 
   def show
     if !filtered_user
-      redirect_to '/users/sign_in', notice: "Please login first"
+      redirect_to '/users/sign_in', notice: "Please login firsts"
       return
     end
   end
