@@ -75,7 +75,7 @@ class Admin::ProfileController < ApplicationController
 
   def send_telegram
     text_message = "Andrew's PC just send you a message at #{(Time.zone.now + 7.hours).strftime(JAKARTA_DDMMYYHHMM)}"
-    HTTParty.post("https://api.telegram.org/bot6093281740:AAF9DShLy7J1le4rrEL3mduDfPrtSl8cPfU/sendMessage?chat_id=816471592&text=#{text_message}")
+    HTTParty.post("https://api.telegram.org/#{TELEGRAM_BOT}/sendMessage?chat_id=#{TELEGRAM_CHAT_ID_PRIVATE}&text=#{text_message}")
 
     redirect_to profile_path(params[:id]), notice: 'Message sent successfully'
   end
