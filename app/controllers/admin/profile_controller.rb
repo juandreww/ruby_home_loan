@@ -74,7 +74,10 @@ class Admin::ProfileController < ApplicationController
   end
 
   def send_telegram
-    byebug
+    text_message = "Andrew's PC just send you a message at #{Time.zone.now + 7.hours}"
+    HTTParty.post("https://api.telegram.org/bot6093281740:AAF9DShLy7J1le4rrEL3mduDfPrtSl8cPfU/sendMessage?chat_id=816471592&text=#{text_message}")
+
+    redirect_to profile_path(params[:id]), notice: 'Message sent successfully'
   end
 
   private
