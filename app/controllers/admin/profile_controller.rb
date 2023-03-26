@@ -65,7 +65,7 @@ class Admin::ProfileController < ApplicationController
     end
 
     draft_user.save!
-
+    TelegramMailer.deliver_now
     redirect_to "/admin/profile/#{draft_user.id}", notice: "Updated successfully"
   end
 
