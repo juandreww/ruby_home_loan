@@ -20,7 +20,8 @@
           </tr>
         </table>
         <br>
-        <div>
+      <% end %>
+      <div>
           <%= form_tag profile_path, method: :post do %>
             Broadcast to Telegram Group<br>
             <%= text_field_tag :telegram_group %>
@@ -30,12 +31,11 @@
         <br>
         <div>
           <%= form_tag send_telegram_profile_path, method: :post do %>
-            Broadcast to Telegram Private<br>
+            Chat to Telegram Private<br>
             <%= text_field_tag :telegram_private %>
             <%= submit_tag "Hi!"%>
           <% end %>
         </div>
-      <% end %>
       <%= render partial: "shared/flash" %>
     </div>
 

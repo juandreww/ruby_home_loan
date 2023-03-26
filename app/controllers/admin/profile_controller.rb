@@ -65,7 +65,7 @@ class Admin::ProfileController < ApplicationController
     end
 
     draft_user.save!
-    TelegramMailer.deliver_now
+    TelegramMailer.send_group_message("#{draft_user.name} updated profile at #{(Time.zone.now + 7.hours).strftime(JAKARTA_DDMMYYHHMM)}").deliver_now
     redirect_to "/admin/profile/#{draft_user.id}", notice: "Updated successfully"
   end
 
