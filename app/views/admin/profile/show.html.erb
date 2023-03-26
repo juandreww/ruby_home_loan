@@ -54,9 +54,9 @@
     </div>
   <% end %>
   <br>
-  <%= link_to "Send private message to personal bot", "https://api.telegram.org/#{TELEGRAM_BOT}/sendMessage?chat_id=#{TELEGRAM_CHAT_ID_PRIVATE}&text=yahoo", target: "_blank" %>
+  <%= link_to "Send private message to personal bot", "https://api.telegram.org/#{TELEGRAM_API_KEY}/sendMessage?chat_id=#{TELEGRAM_CHAT_ID_PRIVATE}&text=yahoo", target: "_blank" %>
   <br>
-  <%= link_to "Send private message to group bot", "https://api.telegram.org/#{TELEGRAM_BOT}/sendMessage?chat_id=#{TELEGRAM_CHAT_ID_GROUP}&text=yahoo", target: "_blank" %>
+  <%= link_to "Send private message to group bot", "https://api.telegram.org/#{TELEGRAM_API_KEY}/sendMessage?chat_id=#{TELEGRAM_CHAT_ID_GROUP}&text=yahoo", target: "_blank" %>
   <br>
   <%= button_to "Send private message via controller", send_telegram_profile_path, method: :post %>
   <br>
