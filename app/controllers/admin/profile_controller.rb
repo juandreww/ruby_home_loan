@@ -74,10 +74,23 @@ class Admin::ProfileController < ApplicationController
   end
 
   def send_telegram
-    text_message = "Andrew's PC just send you a message at #{(Time.zone.now + 7.hours).strftime(JAKARTA_DDMMYYHHMM)}"
-    HTTParty.post("https://api.telegram.org/#{TELEGRAM_API_KEY}/sendMessage?chat_id=#{TELEGRAM_CHAT_ID_PRIVATE}&text=#{text_message}")
+    text_message = send_telegram_params[:text].presence || template_default_telegram_message
+    TelegramMailer.send_message("#{draft_user.name} updated profile at #{(Time.zone.now + 7.hours).strftime(JAKARTA_DDMMYYHHMM)}")
+                  .deliver_now
 
     redirect_to profile_path(params[:id]), notice: 'Message sent successfully'
+  end
+
+  def send_telegram_group
+    text_message = send_telegram_group_params[:text].presence || template_default_telegram_message
+    TelegramMailer.send_group_message("#{draft_user.name} updated profile at #{(Time.zone.now + 7.hours).strftime(JAKARTA_DDMMYYHHMM)}")
+                  .deliver_now
+
+    redirect_to profile_path(params[:id]), notice: 'Message sent successfully'
+  end
+
+  def template_default_telegram_message
+    "Hi! Andrew's PC just send you a message at #{(Time.zone.now + 7.hours).strftime(JAKARTA_DDMMYYHHMM)}"
   end
 
   private
@@ -92,5 +105,13 @@ class Admin::ProfileController < ApplicationController
 
   def update_password_params
     update_params ||= params.require(:user).permit(:old_password, :new_password)
+  end
+
+  def send_telegram_params
+    send_telegram_params ||= params.permit(:text)
+  end
+
+  def send_telegram_group_params
+    send_telegram_group_params ||= params.permit(:text)
   end
 end

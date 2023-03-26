@@ -22,9 +22,9 @@
         <br>
       <% end %>
       <div>
-          <%= form_tag profile_path, method: :post do %>
+          <%= form_tag send_telegram_group_profile_path, method: :post do %>
             Broadcast to Telegram Group<br>
-            <%= text_field_tag :telegram_group %>
+            <%= text_field_tag :text %>
             <%= submit_tag "Hi!"%>
           <% end %>
         </div>
@@ -32,7 +32,7 @@
         <div>
           <%= form_tag send_telegram_profile_path, method: :post do %>
             Chat to Telegram Private<br>
-            <%= text_field_tag :telegram_private %>
+            <%= text_field_tag :text %>
             <%= submit_tag "Hi!"%>
           <% end %>
         </div>
