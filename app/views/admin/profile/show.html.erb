@@ -1,63 +1,80 @@
-<div class = "body-align-middle">
-  <%= form_with url: "/admin/profile/#{@user.id}/edit", method: :get, model: @user do |form| %>
-    <h3><div style="text-align: center"><%= "My Profile" %></div></h3>
-    <br>
-    <div style="text-align: center">
-      <% if @user.image.attached? %>
-        <%= image_tag @user.image, :style => "max-height:150px" %><br>
+<div class = "container">
+  <h3><div style="text-align: center"><%= "My Profile" %></div></h3>
+  <div class = "row text-montserrat">
+    <div class="column left-column">
+      <%= form_with do |form| %>
+        <div style="text-align: center">
+          <% if @user.image.attached? %>
+            <%= image_tag @user.image, :style => "max-height:150px" %><br>
+          <% end %>
+        </div>
+        <br>
+        <table style="width: 100%">
+          <tr>
+            <th style="border-right: 2px solid black; border-left: 1px solid black; text-align: center">Following</th>
+            <th style="border-right: 1px solid black; text-align: center">Followers</th>
+          </tr>
+          <tr>
+            <td style="text-align: center"><%= @user.following.count %></td>
+            <td style="text-align: center"><%= @user.followers.count %></td>
+          </tr>
+        </table>
+        <br>
+        <div>
+          <%= form_tag profile_path, method: :post do %>
+            Broadcast to Telegram Group<br>
+            <%= text_field_tag :telegram_group %>
+            <%= submit_tag "Hi!"%>
+          <% end %>
+        </div>
+        <br>
+        <div>
+          <%= form_tag send_telegram_profile_path, method: :post do %>
+            Broadcast to Telegram Private<br>
+            <%= text_field_tag :telegram_private %>
+            <%= submit_tag "Hi!"%>
+          <% end %>
+        </div>
+      <% end %>
+      <%= render partial: "shared/flash" %>
+    </div>
+
+    <div class="column">
+      <%= form_with url: "/admin/profile/#{@user.id}/edit", method: :get, model: @user do |form| %>
+        <div>
+          <%= form.label :email %><br>
+          <%= form.text_field :email, class: "background-white", disabled: true %>
+        </div>
+        <br>
+        <div>
+          <%= form.label :name %><br>
+          <%= form.text_field :name, class: "background-white", disabled: true %>
+        </div>
+        <br>
+        <div>
+          <%= form.label :phone %><br>
+          <%= form.text_field :phone, class: "background-white", disabled: true %>
+        </div>
+        <br>
+        <div>
+          <%= form.label :status %><br>
+          <%= form.text_field :status, class: "background-white", disabled: true %>
+        </div>
+        <br>
+        <div>
+          <%= form.submit 'Edit Profile', class: "button" %>
+        </div>
+      <% end %>
+      <br>
+      <%= form_with url: "/home_loans/new", method: :get do |form| %>
+        <div>
+          <%= form.submit 'Open Loan Calculator', class: "button input" %>
+        </div>
+        <div class="white">
+          <%= form.label :password %><br>
+          <%= form.password_field :password, id:"password", class: "white", disabled: true %>
+        </div>
       <% end %>
     </div>
-    <br>
-    <table style="width: 100%">
-      <tr>
-        <th style="border-right: 2px solid black; border-left: 1px solid black; text-align: center">Following</th>
-        <th style="border-right: 1px solid black; text-align: center">Followers</th>
-      </tr>
-      <tr>
-        <td style="text-align: center"><%= @user.following.count %></td>
-        <td style="text-align: center"><%= @user.followers.count %></td>
-      </tr>
-    </table>
-    <%= render partial: "shared/flash" %>
-    <div>
-      <%= form.label :email %><br>
-      <%= form.text_field :email, class: "background-white", disabled: true %>
-    </div>
-    <br>
-    <div>
-      <%= form.label :name %><br>
-      <%= form.text_field :name, class: "background-white", disabled: true %>
-    </div>
-    <br>
-    <div>
-      <%= form.label :phone %><br>
-      <%= form.text_field :phone, class: "background-white", disabled: true %>
-    </div>
-    <br>
-    <div>
-      <%= form.label :status %><br>
-      <%= form.text_field :status, class: "background-white", disabled: true %>
-    </div>
-    <br>
-    <div>
-      <%= form.submit 'Edit Profile', class: "button" %>
-    </div>
-  <% end %>
-  <br>
-  <%= form_with url: "/home_loans/new", method: :get do |form| %>
-    <div>
-      <%= form.submit 'Open Loan Calculator', class: "button input" %>
-    </div>
-    <div class="white">
-      <%= form.label :password %><br>
-      <%= form.password_field :password, id:"password", class: "white", disabled: true %>
-    </div>
-  <% end %>
-  <br>
-  <%= link_to "Send private message to personal bot", "https://api.telegram.org/#{TELEGRAM_API_KEY}/sendMessage?chat_id=#{TELEGRAM_CHAT_ID_PRIVATE}&text=yahoo", target: "_blank" %>
-  <br>
-  <%= link_to "Send private message to group bot", "https://api.telegram.org/#{TELEGRAM_API_KEY}/sendMessage?chat_id=#{TELEGRAM_CHAT_ID_GROUP}&text=yahoo", target: "_blank" %>
-  <br>
-  <%= button_to "Send private message via controller", send_telegram_profile_path, method: :post %>
-  <br>
+  </div>
 </div>
