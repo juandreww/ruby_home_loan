@@ -1,5 +1,7 @@
 <div class = "container">
   <h3><div style="text-align: center"><%= "My Profile" %></div></h3>
+  <h6><div style="text-align: center; color: grey;"><%= "You are logged in from IP #{@ip_address} and platform '#{@platform}'" %></div></h6>
+  <br>
   <div class = "row text-montserrat">
     <div class="column left-column">
       <%= form_with do |form| %>

@@ -4,6 +4,7 @@ class Admin::ProfileController < ApplicationController
   end
 
   def show
+    device_information
     if !filtered_user
       redirect_to '/users/sign_in', notice: "Please login first"
       return
@@ -75,7 +76,7 @@ class Admin::ProfileController < ApplicationController
 
   def send_telegram
     text_message = send_telegram_params[:text].presence || template_default_telegram_message
-    TelegramMailer.send_message("#{draft_user.name} updated profile at #{(Time.zone.now + 7.hours).strftime(JAKARTA_DDMMYYHHMM)}")
+    TelegramMailer.send_message(text_message)
                   .deliver_now
 
     redirect_to profile_path(params[:id]), notice: 'Message sent successfully'
@@ -83,7 +84,7 @@ class Admin::ProfileController < ApplicationController
 
   def send_telegram_group
     text_message = send_telegram_group_params[:text].presence || template_default_telegram_message
-    TelegramMailer.send_group_message("#{draft_user.name} updated profile at #{(Time.zone.now + 7.hours).strftime(JAKARTA_DDMMYYHHMM)}")
+    TelegramMailer.send_group_message(text_message)
                   .deliver_now
 
     redirect_to profile_path(params[:id]), notice: 'Message sent successfully'
@@ -94,6 +95,11 @@ class Admin::ProfileController < ApplicationController
   end
 
   private
+
+  def device_information
+    @ip_address = request.ip
+    @platform = browser.platform.name
+  end
 
   def filtered_user
     @user = User.find_by(id: params[:id])
