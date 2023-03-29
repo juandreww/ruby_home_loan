@@ -99,7 +99,6 @@ class Admin::ProfileController < ApplicationController
   def device_information
     @ip_address = request.ip
     @platform = browser.platform.name
-    #
   end
 
   def filtered_user
