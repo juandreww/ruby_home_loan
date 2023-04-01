@@ -51,7 +51,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :profile, only: [:show, :edit, :update]
+    resource :qr_code, only: [:show]
   end
 
   get 'download', to: "profile#download"
