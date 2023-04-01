@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     resource :qr_code do
       collection do
         get '/generator', to: 'qr_codes#generator'
-        get '/download', to: 'qr_codes#download'
+        post '/download', to: 'qr_codes#download'
       end
     end
   end

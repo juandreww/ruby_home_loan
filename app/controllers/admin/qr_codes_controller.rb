@@ -6,7 +6,13 @@ class Admin::QrCodesController < ApplicationController
   end
 
   def download
-    send_data RQRCode::QRCode.new(params[:content].to_s).as_png(size: 300), type: 'image/png', disposition: 'attachment'
+    qr_code = RQRCode::QRCode.new(params[:content].to_s)
+    svg = RQRCode::Renderers::SVG.render(qr, level: :l, unit: 4)
+    File.open("#{Rails.root}/public/qr_code.svg", 'w') do |file|
+      file.write(svg)
+    end
+
+    redirect_to '/qr_codes/generator'
   end
 
   def page_title
