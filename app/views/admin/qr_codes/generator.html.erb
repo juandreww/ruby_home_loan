@@ -1,13 +1,24 @@
-<h1>QR code generator</h1>
+<div class = "container">
+  <div class="text-montserrat" style="text-align: center">
+    <%= form_tag '/qr_code/download', method: :post do |f| %>
+      <h1><%= "QR Code Generator" %></h1>
+      <div class="field">
+        <%= label_tag :text_or_url, "Text or URL" %>
+        <br>
+        <%= text_field_tag :content, nil, required: true %>
+      </div>
+      <br>
 
-<%= form_tag '/qr_code/download', method: :post do |f| %>
-  <div class="field">
-    <%= label_tag 'Text or URL' %>
-    <%= text_field_tag :content, nil, required: true %>
-  </div>
+      <div class="actions">
+        <%= submit_tag 'Generate QR code' %>
+      </div>
+      <br>
 
-  <div class="actions">
-    <%= submit_tag 'Generate QR code' %>
+      <% if @has_svg %>
+        <%= image_tag 'qr_code.svg' %>
+      <% else %>
+        <h3><div style="text-align: center"><%= "Generated QR Code" %></div></h3>
+      <% end %>
+    <% end %>
   </div>
-<% end %>
-<%= image_tag 'qr_code.svg' %>
+</div>

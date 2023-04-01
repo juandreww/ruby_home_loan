@@ -3,12 +3,17 @@ class Admin::QrCodesController < ApplicationController
   end
 
   def generator
+    @has_svg = File.exists?("public/qr_code.svg")
   end
 
   def download
     qr_code = RQRCode::QRCode.new(params[:content].to_s)
-    svg = RQRCode::Renderers::SVG.render(qr, level: :l, unit: 4)
-    File.open("#{Rails.root}/public/qr_code.svg", 'w') do |file|
+    svg = qr_code.as_svg( color: "000", shape_rendering: "crispEdges", module_size:11,
+      standalone: true,
+      use_path: true
+    )
+
+    File.open("#{Rails.root}/app/assets/images/qr_code.svg", 'w') do |file|
       file.write(svg)
     end
 
