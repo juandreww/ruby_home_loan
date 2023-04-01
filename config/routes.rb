@@ -50,6 +50,8 @@ Rails.application.routes.draw do
         post '/send_telegram_group', to: 'profile#send_telegram_group'
       end
     end
+
+    resource :profile, only: [:show, :edit, :update]
   end
 
   get 'download', to: "profile#download"
