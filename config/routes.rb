@@ -51,7 +51,7 @@ Rails.application.routes.draw do
       end
 
       collection do
-        get 'telegram', to: 'profile#telegram_profile'
+        get 'telegram_profile', to: 'profile#telegram_profile'
       end
     end
 

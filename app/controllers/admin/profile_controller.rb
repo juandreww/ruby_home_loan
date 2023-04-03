@@ -94,6 +94,9 @@ class Admin::ProfileController < ApplicationController
     "Hi! Andrew's PC just send you a message at #{(Time.zone.now + 7.hours).strftime(JAKARTA_DDMMYYHHMM)}"
   end
 
+  def telegram_profile
+  end
+
   private
 
   def device_information
