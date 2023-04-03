@@ -49,6 +49,10 @@ Rails.application.routes.draw do
         post '/send_telegram', to: 'profile#send_telegram'
         post '/send_telegram_group', to: 'profile#send_telegram_group'
       end
+
+      collection do
+        get 'telegram', to: 'profile#telegram_profile'
+      end
     end
 
     resource :qr_code do
