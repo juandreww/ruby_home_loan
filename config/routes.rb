@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # devise_for :users, :controllers => { registrations: 'users/registrations' }
 
   resources :brands
+  resources :checkout, only: [:create]
 
   namespace :users do
     get 'verification', to: 'verification'
