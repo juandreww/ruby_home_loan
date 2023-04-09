@@ -2,7 +2,7 @@
 
 <h1>Products</h1>
 
-<table>
+<table style="width: 25%">
   <thead>
     <tr>
       <th>Name</th>
@@ -17,7 +17,7 @@
       <tr>
         <td><%= product %></td>
         <td><%= product.price %></td>
-        <td><%= link_to "Buy now!", checkout_create_path, method: :post %></td>
+        <td><%= button_to "Buy now!", checkout_create_path, params: {id: product.id}, remote: true %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
