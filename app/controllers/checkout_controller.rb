@@ -3,7 +3,7 @@ class CheckoutController < ApplicationController
     product = Product.find_by(id: params[:id])
 
     @session = Stripe::Checkout::Session.create({
-      payment_method_types: ['vcc'],
+      payment_method_types: ['card'],
       line_items: [
         price_data: {
           unit_amount: product.price.to_i,
