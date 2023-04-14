@@ -26,6 +26,15 @@ class CheckoutController < ApplicationController
     end
   end
 
+  def pay
+    current_user = User.first
+
+    @checkout_session = current_user.payment_processor.checkout(
+      mode: 'payment',
+      line_items: 'price_1MwaLNJWXdSisGNL3IPri5f3'
+    )
+  end
+
   def page_title
     'Checkout'
   end

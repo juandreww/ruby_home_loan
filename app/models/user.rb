@@ -2,6 +2,8 @@ class User < ApplicationRecord
   include ActiveModel::Validations
 
   has_secure_password
+  pay_customer
+  pay_customer default_payment_processor: :stripe
 
   # mount_uploader :image, ImageUploader
   enum status: { activated: 0, deactivated: 1, verify: 2 }
