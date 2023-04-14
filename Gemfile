@@ -70,6 +70,7 @@ gem 'imagemagick-binaries'
 gem 'httparty'
 gem 'browser'
 gem 'rqrcode'
+gem "pay", "~> 6.0"
 gem 'stripe'
 
 group :development, :test do
