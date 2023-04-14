@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :brands
   post "checkout/create", to: "checkout#create"
+  get "checkout/pay", to: "checkout#pay"
 
   namespace :users do
     get 'verification', to: 'verification'

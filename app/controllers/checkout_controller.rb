@@ -20,7 +20,13 @@ class CheckoutController < ApplicationController
     })
 
     respond_to do |format|
-      format.js
+      format.html do
+        redirect_to '/checkout/pay'
+      end
     end
+  end
+
+  def page_title
+    'Checkout'
   end
 end
