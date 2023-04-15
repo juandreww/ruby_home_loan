@@ -1,1 +1,6 @@
-Stripe.api_key = 'sk_test_51MtXtQJWXdSisGNLYzVD7ONo2EmCoGQNZYIE6UnlvbXvp3iQsaYbhaRgWLRRVpCTdKqbtHCndcjkC83LA1pG7bjD00d9i3OJty'
+Rails.configuration.stripe = {
+  :publishable_key => ENV['STRIPE_PUBLISHABLE_KEY'],
+  :secret_key      => ENV['STRIPE_SECRET_KEY']
+}
+
+Stripe.api_key = Rails.configuration.stripe[:secret_key]
