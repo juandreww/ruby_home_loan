@@ -1,10 +1,33 @@
-<p style="color: green"><%= notice %></p>
+<%= form_with(model: @product) do |form| %>
+  <br>
+  <h1>Show Product</h1>
+  <br>
+  <div class="field">
+    <strong><%= form.label :name, 'Name:' %></strong><br>
+    <%= form.text_field :name, required: true, disabled: true %>
+  </div>
+  <br>
+  <div class="field">
+    <strong><%= form.label :price, 'Price:' %></strong><br>
+    <%= form.number_field :price, disabled: true, min: 0, step: 0.01, required: true %>
+  </div>
+  <br>
+  <div class="field">
+    <strong><%= form.label :avatar, 'Avatar:' %></strong><br>
+    <% if @product.avatar.attached? %>
+      <%= image_tag @product.avatar, width: "100%" %><br>
+    <% end %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
 
-<%= render @product %>
+<br>
 
 <div>
   <%= link_to "Edit this product", edit_product_path(@product) %> |
   <%= link_to "Back to products", products_path %>
-
-  <%= button_to "Destroy this product", @product, method: :delete %>
 </div>
+

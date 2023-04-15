@@ -1,18 +1,21 @@
 <h1>Editing product</h1>
 
-<%= form_with(model: product) do |form| %>
+<%= form_with(model: @product) do |form| %>
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name %><br>
     <%= form.text_field :name, required: true %>
   </div>
+  <br>
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, required: true %>
+    <%= form.label :price %><br>
+    <%= form.number_field :price, min: 0, step: 0.01, required: true %>
   </div>
+  <br>
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, required: true %>
+    <%= form.label :avatar %><br>
+    <%= form.file_field :avatar, required: true %>
   </div>
+  <br>
   <div class="actions">
     <%= form.submit %>
   </div>
