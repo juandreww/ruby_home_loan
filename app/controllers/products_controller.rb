@@ -4,6 +4,12 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @products = Product.all
+
+    if @products.size < 200
+      200.times do |index|
+        new_product = Product.new(name: Faker::Food.dish , price: 1_000)
+      end
+    end
   end
 
   # GET /products/1 or /products/1.json
