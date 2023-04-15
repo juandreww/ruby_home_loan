@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Products</h1>
+<h1>List of Products</h1>
 
 <h3>Products per page: <%= @products.count %> / <%= Product.count %></h3>
 
@@ -8,12 +8,15 @@
 
 <%== pagy_bootstrap_nav(@pagy) %>
 
-<table style="width: 25%">
+<%= link_to "New product", new_product_path %>
+<br>
+<table class="table" style="width: 45%">
   <thead>
     <tr>
       <th>Name</th>
       <th>Price</th>
-      <th colspan="3"></th>
+      <th>Avatar</th>
+      <th colspan="3" style="width: 10%"></th>
     </tr>
   </thead>
 
@@ -22,6 +25,7 @@
       <tr>
         <td><%= product %></td>
         <td><%= product.price %></td>
+        <td><%= %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -29,5 +33,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to "New product", new_product_path %>
