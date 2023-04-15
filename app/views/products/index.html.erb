@@ -2,6 +2,12 @@
 
 <h1>Products</h1>
 
+<h3>Products per page: <%= @products.count %> / <%= Product.count %></h3>
+
+<br>
+
+<%= raw pagy_nav(@pagy) %>
+
 <table style="width: 25%">
   <thead>
     <tr>
