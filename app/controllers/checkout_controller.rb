@@ -1,6 +1,7 @@
 class CheckoutController < ApplicationController
   def create
     product = Product.find_by(id: params[:id])
+    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
 
     @session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
@@ -30,9 +31,12 @@ class CheckoutController < ApplicationController
     current_user = User.first
 
     @checkout_session = current_user.payment_processor.checkout(
-      mode: 'payment',
+      mode: 'subscription',
       line_items: 'price_1MwaLNJWXdSisGNL3IPri5f3'
     )
+    byebug
+    partial_html = render_to_string(partial: 'pay/stripe/checkout_button', locals: { session: @checkout_session, title: "Checkout" })
+    render json: { partial_html: partial_html }
   end
 
   def page_title
