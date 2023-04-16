@@ -72,7 +72,8 @@ gem 'browser'
 gem 'rqrcode'
 gem "pay", "~> 6.0"
 gem 'stripe'
-gem 'pagy', '~> 6.0' # omit patch digit
+gem 'pagy', '~> 6.0'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
