@@ -7,9 +7,10 @@ ActiveStorage.start()
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require activestorage
 
 // import 'bootstrap/dist/js/bootstrap'
 // import 'bootstrap/dist/css/bootstrap'
 
-
+import "./activestorage.js"
 import "./direct_uploads.js"
