@@ -22,8 +22,10 @@
   <div class="field">
     <strong><%= form.label :images, 'Images:' %></strong><br>
     <% if @product.images.attached? %>
-      <% @product.images.each do |image| %>
-        <%= image_tag image, width: "200px" %>
+      <% @product.images.each do |attachment| %>
+        <% if attachment.image? %>
+          <%= image_tag attachment, width: "200px" %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
