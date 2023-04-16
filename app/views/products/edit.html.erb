@@ -13,12 +13,12 @@
   <br>
   <div class="field">
     <%= form.label :avatar %><br>
-    <%= form.file_field :avatar %>
+    <%= form.file_field :avatar, direct_upload: true %>
   </div>
   <br>
   <div class="field">
     <%= form.label :images %><br>
-    <%= form.file_field :images, multiple: true %>
+    <%= form.file_field :images, multiple: true, direct_upload: true %>
   </div>
   <br>
   <div class="actions">
