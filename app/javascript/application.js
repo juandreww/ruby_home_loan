@@ -5,5 +5,7 @@ import "controllers"
 //= require popper
 //= require bootstrap
 
-import 'bootstrap/dist/js/bootstrap'
-import 'bootstrap/dist/css/bootstrap'
+// import 'bootstrap/dist/js/bootstrap'
+// import 'bootstrap/dist/css/bootstrap'
+console.log("Lalala")
+import "./direct_uploads"
