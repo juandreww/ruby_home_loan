@@ -15,7 +15,16 @@
   <div class="field">
     <strong><%= form.label :avatar, 'Avatar:' %></strong><br>
     <% if @product.avatar.attached? %>
-      <%= image_tag @product.avatar, width: "100%" %><br>
+      <%= image_tag @product.avatar, width: "200px" %><br>
+    <% end %>
+  </div>
+  <br>
+  <div class="field">
+    <strong><%= form.label :images, 'Images:' %></strong><br>
+    <% if @product.images.attached? %>
+      <% @product.images.each do |image| %>
+        <%= image_tag image, width: "200px" %>
+      <% end %>
     <% end %>
   </div>
   <br>

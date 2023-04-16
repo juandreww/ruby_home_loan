@@ -13,7 +13,12 @@
   <br>
   <div class="field">
     <%= form.label :avatar %><br>
-    <%= form.file_field :avatar, required: true %>
+    <%= form.file_field :avatar %>
+  </div>
+  <br>
+  <div class="field">
+    <%= form.label :images %><br>
+    <%= form.file_field :images, multiple: true %>
   </div>
   <br>
   <div class="actions">
