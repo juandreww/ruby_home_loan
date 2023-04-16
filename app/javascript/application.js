@@ -8,4 +8,4 @@ import "controllers"
 // import 'bootstrap/dist/js/bootstrap'
 // import 'bootstrap/dist/css/bootstrap'
 console.log("Lalala")
-import "./direct_uploads"
+import "./direct_uploads.js"
