@@ -1,6 +1,7 @@
 // direct_uploads.js
-
+console.log("Lalala")
 addEventListener("direct-upload:initialize", event => {
+  console.log("AAA")
   const { target, detail } = event
   const { id, file } = detail
   target.insertAdjacentHTML("beforebegin", `
@@ -13,18 +14,21 @@ addEventListener("direct-upload:initialize", event => {
 })
 
 addEventListener("direct-upload:start", event => {
+  console.log("CCC")
   const { id } = event.detail
   const element = document.getElementById(`direct-upload-${id}`)
   element.classList.remove("direct-upload--pending")
 })
 
 addEventListener("direct-upload:progress", event => {
+  console.log("BBB")
   const { id, progress } = event.detail
   const progressElement = document.getElementById(`direct-upload-progress-${id}`)
   progressElement.style.width = `${progress}%`
 })
 
 addEventListener("direct-upload:error", event => {
+  console.log("XXX")
   event.preventDefault()
   const { id, error } = event.detail
   const element = document.getElementById(`direct-upload-${id}`)
@@ -33,6 +37,7 @@ addEventListener("direct-upload:error", event => {
 })
 
 addEventListener("direct-upload:end", event => {
+  console.log("YYY")
   const { id } = event.detail
   const element = document.getElementById(`direct-upload-${id}`)
   element.classList.add("direct-upload--complete")
