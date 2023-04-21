@@ -57,6 +57,13 @@ class ProductsController < ApplicationController
     end
   end
 
+  def purge_avatar
+    @product = Product.find(params[:id])
+    @product.avatar.purge
+
+    redirect_back fallback_location: root_path, notice: "Successfully delete the avatar"
+  end
+
   def page_title
     'Products'
   end
