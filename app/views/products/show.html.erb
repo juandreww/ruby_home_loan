@@ -16,6 +16,7 @@
     <strong><%= form.label :avatar, 'Avatar:' %></strong><br>
     <% if @product.avatar.attached? %>
       <%= image_tag @product.avatar, width: "200px" %><br>
+      <%= link_to "Delete avatar", purge_avatar_product_path(@product), method: :delete %>
     <% end %>
   </div>
   <br>
