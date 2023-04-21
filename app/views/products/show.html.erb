@@ -37,6 +37,7 @@
         <% else %>
           <%= link_to attachment.filename, rails_blob_path(attachment, disposition: "attachment") %>
         <% end %>
+        <%= link_to "Delete attachment", purge_attachment_path(attachment), method: :delete %><br><br>
       <% end %>
     <% end %>
   </div>

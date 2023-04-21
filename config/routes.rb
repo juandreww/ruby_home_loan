@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       delete :purge_avatar
     end
   end
+
+  delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

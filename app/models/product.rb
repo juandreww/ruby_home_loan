@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   has_many_attached :images
 
   validates :name, :price, presence: true
+  validates :avatar, attached: true, content_type: 'image/png'
 
   def to_s
     name
