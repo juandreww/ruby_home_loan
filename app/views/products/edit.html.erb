@@ -1,6 +1,16 @@
-<h1>Editing product</h1>
-
 <%= form_with(model: @product) do |form| %>
+  <br>
+  <h1>Editing product</h1>
+  <% if @product.errors.any? %>
+    <div style="color: red">
+      <br>
+      <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="field">
     <%= form.label :name %><br>
     <%= form.text_field :name, required: true %>
