@@ -20,6 +20,7 @@ class ProductMailer < ApplicationMailer
 
   def product_updated
     @greeting = "Hi"
+    @product = params[:product]
 
     mail(
       from: "looh@support.co.id",

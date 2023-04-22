@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'rubyhl@support.co.id'
+  default from: 'RubyHL Support <rubyhl@support.co.id>'
   layout 'mailer'
 end

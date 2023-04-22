@@ -6,4 +6,8 @@ class ProductMailerPreview < ActionMailer::Preview
     ProductMailer.product_created
   end
 
+  def product_updated
+    ProductMailer.with(product: Product.first).product_updated
+  end
+
 end
