@@ -5,8 +5,8 @@ class Product < ApplicationRecord
   validates :name, :price, presence: true
   validates :avatar, attached: true,
                      content_type: [:png, :jpg, :jpeg],
-                     size: { less_than: 100.kilobytes ,
-                             message: 'cannot exceed 100kb' }
+                     size: { less_than: 1.megabytes ,
+                             message: 'cannot exceed 1MB' }
   validates :images, attached: true, limit: { min: 1, max: 3 },
                      content_type: [:png, :jpg, :jpeg]
 

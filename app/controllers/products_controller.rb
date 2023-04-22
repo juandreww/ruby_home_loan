@@ -25,6 +25,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
+        ProductMailer.product_created.deliver_later
         format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
         format.json { render :show, status: :created, location: @product }
       else

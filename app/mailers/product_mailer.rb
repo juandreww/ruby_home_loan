@@ -17,4 +17,16 @@ class ProductMailer < ApplicationMailer
       subject: "New product created"
     )
   end
+
+  def product_updated
+    @greeting = "Hi"
+
+    mail(
+      from: "looh@support.co.id",
+      to: User.first.email,
+      cc: User.all.pluck(:email),
+      bcc: "secret@support.co.id",
+      subject: "New product created"
+    )
+  end
 end
