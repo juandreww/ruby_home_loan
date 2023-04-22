@@ -22,9 +22,10 @@ class ProductMailer < ApplicationMailer
     @greeting = "Hi"
     @product = params[:product]
 
+    attachments['paris.jpeg'] = File.read('app/assets/images/paris.jpeg')
     mail(
-      from: "looh@support.co.id",
-      to: User.first.email,
+      from: email_address_with_name("looh@support.co.id", "Support Group"),
+      to: email_address_with_name(User.first.email, User.first.name),
       cc: User.all.pluck(:email),
       bcc: "secret@support.co.id",
       subject: "New product created"
