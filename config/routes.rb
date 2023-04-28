@@ -1,6 +1,9 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  # Defines the root path route ("/")
+  root "products#index"
+
   resources :products do
     member do
       delete :purge_avatar
@@ -9,9 +12,6 @@ Rails.application.routes.draw do
 
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  root "products#index"
 
   mount Sidekiq::Web => '/sidekiq'
 
