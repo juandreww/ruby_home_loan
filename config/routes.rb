@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   mount Sidekiq::Web => '/sidekiq'
 
